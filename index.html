@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>레스토랑 미스터리 - 프로토타입</title>
+<style>
+:root{color-scheme:dark;--bg:#10121b;--panel:#222538;--line:#77829e;--gold:#e9cb90}{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f1eee9;font-family:system-ui,'Apple SD Gothic Neo',sans-serif}#shell{max-width:1250px;margin:auto;padding:10px}header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}header h1{font-size:17px;margin:0}button{background:#333a52;border:1px solid #8791ad;color:white;border-radius:7px;padding:9px 12px;cursor:pointer;font:inherit}button:hover{background:#47536e}button:disabled{opacity:.4}#status{font-size:13px;color:#d3d5e1}#stage{position:relative;aspect-ratio:16/9;border:3px solid #535c74;border-radius:9px;overflow:hidden;background:#1b1b25}canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none}#prompt{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:#131725e8;border:1px solid #b6a37a;padding:7px 13px;border-radius:6px;font-size:13px;pointer-events:none;white-space:nowrap}#dialogue{position:absolute;left:3%;right:3%;bottom:3%;background:#141927f2;border:2px solid #a18c6b;border-radius:8px;padding:13px 16px;min-height:130px;display:none;z-index:4}#speaker{color:var(--gold);font-weight:800;margin-bottom:8px}#line{font-size:15px;line-height:1.6;min-height:48px}#next{float:right;padding:5px 14px}#overlay{position:absolute;inset:0;background:#090c16db;display:none;z-index:6;align-items:center;justify-content:center;padding:20px}#overlay.show{display:flex}.window{background:#23283a;border:2px solid #a69a7f;border-radius:12px;padding:18px;max-width:780px;width:100%;max-height:94%;overflow:auto}.window h2{margin:0 0 12px;font-size:20px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.tabs button.active{background:#806947}.notebook{background:#141a29;border:1px solid #5a637a;border-radius:7px;padding:14px;min-height:180px;line-height:1.7;white-space:pre-wrap}.muted{color:#b4b8c8;font-size:13px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}.controls{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.pad{display:grid;grid-template-columns:repeat(3,42px);grid-template-rows:repeat(2,37px);gap:3px}.pad button{padding:0}.pad .up{grid-column:2}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}.help{font-size:12px;color:#bdc3d5;margin:8px 0 0}#toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#11192be8;border:1px solid #bca66f;border-radius:6px;padding:9px 15px;max-width:90%;text-align:center;font-size:13px;display:none;z-index:5}#objective{font-size:12px;color:#d8c69c}#ending{font-size:25px;text-align:center;line-height:2.3}#ending small{display:block;font-size:14px;color:#aeb4c5}@media(max-width:650px){#shell{padding:5px}header h1{font-size:13px}#status,#objective{font-size:11px}#dialogue{min-height:110px;padding:8px;font-size:13px}#line{font-size:12px;min-height:37px}button{font-size:12px;padding:7px}.help{font-size:10px}}
+</style>
+</head>
+<body><div id="shell"><header><h1>🔎 레스토랑 미스터리 <span class="muted">| 개발용 기본 틀</span></h1><div id="status">증거 0/11</div><button id="bookBtn">📓 탐정 수첩</button></header>
+<div id="stage"><canvas id="game" width="960" height="540"></canvas><div id="prompt" hidden></div><div id="toast"></div><div id="dialogue"><div id="speaker">???</div><div id="line"></div><button id="next">다음 ▶</button></div><div id="overlay"><div class="window" id="overlayContent"></div></div></div>
+<div class="toolbar"><div><div id="objective">목표: 사건을 조사하세요.</div><div class="help">이동: WASD / 방향키 · 대화/조사: E 또는 대상 클릭 · 수첩: N · ESC: 닫기</div></div><div class="controls"><div class="pad"><button class="up" data-key="ArrowUp">▲</button><button class="left" data-key="ArrowLeft">◀</button><button class="down" data-key="ArrowDown">▼</button><button class="right" data-key="ArrowRight">▶</button></div><button id="actionBtn">조사 / 대화</button></div></div></div>
+<script>
+'use strict';
+// 한 파일로 실행되는 프로토타입. 나중에 이미지와 대사를 별도 파일로 분리할 수 있습니다.
+const canvas=document.querySelector('#game'),ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+const ￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+function collide(x,y){const r=player.r;return [...walls,...furniture].some(a=>x+r>a.x&&x-r<a.x+a.w&&y+r>a.y&&y-r<a.y+a.h)}
+function toast(msg){('#toast').textContent=msg;￼('#toast').style.display='none',2800)}
+function objective(msg){('#objective').textContent='목표: '+msg}
+function progress(){const n=state.found.length+(state.ending?1:0);('#status').textContent=⁠증거 ${n}/11⁠;if(state.ending)objective('사건의 결말');else if(state.phase==='intro')objective('수사를 시작하세요.');else if(state.phase==='meet')objective(⁠NPC 첫 대화 ${state.met.length}/${npc.length}⁠);else if(state.phase==='firstEvidence')objective('주변의 소지품을 조사하세요.');else if(state.phase==='followup')objective('발견한 증거와 관련된 NPC에게 다시 대화하세요.');else if(state.found.length=10)objective('모든 사람의 가방을 조사하세요.');else objective(⁠레스토랑을 탐색하고 증거를 모으세요. (${state.found.length}/10)⁠)}
+function openDialogue(name,lines,onFinish){if(overlayOpen)return;dialogue={name,lines,index:0,onFinish};('#dialogue').style.display='block';renderDialogue()}
+function renderDialogue(){if(!dialogue)return;('#speaker').textContent=dialogue.name;￼('#next').textContent=dialogue.index=dialogue.lines.length-1?'닫기':'다음 ▶'}
+function advance(){if(!dialogue)return;if(++dialogue.index<dialogue.lines.length){renderDialogue();return}const fn=dialogue.onFinish;dialogue=null;('#dialogue').style.display='none';fn?.();progress();save()}
+function revealRole(id){return state.met.includes(id)?(id==='youtuber'&&state.roleRevealed.includes('youtuber')?'버튜버':npc.find(n=>n.id===id)?.role||'???'):'???'}
+￼
+function talk(n){if(state.phase==='intro'||state.ending)return;if(!state.met.includes(n.id)){
+openDialogue('???',n.first,()=>{state.met.push(n.id);record(n.id,'대화','첫 번째 대화',n.first.join('\n'));if(state.met.length===npc.length){state.phase='firstEvidence';toast('기본 조사가 끝났습니다. 주변의 소지품을 확인하십시오.')}progress()});return}
+const pending=evidence.filter(e=>e.owner===n.id&&state.found.includes(e.id)&&!state.talkedEvidence.includes(e.id));if(pending.length){const e=pending[0];let lines=[`발견한 증거 「${e.name}」에 관해 질문했다.`,`[임시 대사] 이 증거에 대한 ${revealRole(n.id)}의 설명은 나중에 작성됩니다.`];if(e.id==='channel')lines=['이 채널에 등장하는 가상 캐릭터가 본인입니까?','네. 사실 저는 버추얼 캐릭터로 방송하는 버튜버입니다.'];openDialogue(revealRole(n.id),lines,()=>{state.talkedEvidence.push(e.id);record(n.id,'대화',`${e.name} 관련 추가 대화`,lines.join('\n'));if(e.id==='channel')state.roleRevealed.push('youtuber');if(state.phase==='followup'){state.phase='explore';toast('이제 맵을 자유롭게 탐색하며 증거를 수집하십시오.')}save()});return}
+openDialogue(revealRole(n.id),['현재 새롭게 질문할 내용은 없습니다.'])}
+\bm{function findEvidence(e){if(state.phase==='intro'||state.phase==='meet'||state.ending)return;if(state.found.includes(e.id)){toast('이미 수첩에 기록된 증거입니다.');return}if(state.phase==='followup'){toast('먼저 발견한 증거와 관련된 NPC에게 대화하세요.');return}state.found.push(e.id);record(e.owner,'증거',e.name,e.desc);openDialogue('증거 발견',[`${e.name}`,e.desc,'탐정 수첩에 자동으로 기록되었습니다.'],()=>{if(state.phase==='firstEvidence')state.phase='followup';if(state.found.length===10){state.phase='bags';toast('마지막 증거가 남았습니다. 사람들의 가방을 조사하십시오.')}else toast(`${revealRole(e.owner)}에게 증거에 대해 질문할 수 있습니다.`)});progress();save()}}
+function checkBag(b){if(state.phase!=='bags'){toast('아직 가방을 조사할 단계가 아닙니다.');return}if(b.id==='bag_player'){
+state.ending=true;record('detective','증거','약통','자신의 가방에서 발견한 작은 약통.');progress();save();openDialogue('탐정',['내 가방이다.','안쪽에서 작은 약통이 나왔다.','……','이게 왜 여기에 있지?'],()=>showEnding());return}
+if(!state.bagChecked.includes(b.id))state.bagChecked.push(b.id);openDialogue('가방 조사',[`${b.name}을(를) 확인했다.`,'사건과 관련된 특별한 물건은 발견되지 않았다.'],save)}
+function showEnding(){overlayOpen=true;('#overlayContent').innerHTML='<div id="ending">……
+기억의 파편이 빠르게 스쳐 지나간다.
+<strong>“어?”</strong><small>화면 암전 · 프로토타입 엔딩</small></div><div style="text-align:center;margin-top:12px"><button id="restart">처음부터 다시 시작</button></div>';￼('#restart').onclick=reset}
+function showIntro(){openDialogue('SYSTEM',['당신은 탐정입니다. 지금부터 사건을 수사하십시오.','먼저 레스토랑에 있는 사람들과 대화하여 기본 정보를 확인하십시오.'],()=>{state.phase='meet';progress()})}
+function notebook(){if(dialogue)return;overlayOpen=true;const people=[...npc.map(n=>({id:n.id,label:revealRole(n.id)})),{id:'detective',label:'탐정'}];￼('#overlay').classList.add('show');￼('#tabs'),notes=('#notes');function select(id){tabs.innerHTML='';people.forEach(p=>{const b=document.createElement('button');b.textContent=p.label;b.className=id===p.id?'active':'';b.onclick=()=>select(p.id);tabs.append(b)});const entries=state.notebook.filter(e=>e.owner===id);notes.textContent=entries.length?entries.map(e=>`[${e.type}] ${e.title}\n${e.content}`).join('\n\n────────────\n\n'):'아직 기록이 없습니다.'}select(people[0].id)}
+function closeOverlay(){overlayOpen=false;('#overlay').classList.remove('show')}
+function reset(){localStorage.removeItem('restaurant_mystery_v1');location.reload()}
+function targets(){let out=[];for(const n of npc)out.push({x:n.x,y:n.y,name:revealRole(n.id),fn:()=>talk(n),kind:'npc'});for(const e of evidence)if(!state.found.includes(e.id))out.push({x:e.x,y:e.y,name:'소지품 조사',fn:()=>findEvidence(e),kind:'item'});if(state.phase==='bags')for(const b of bags)out.push({x:b.x,y:b.y,name:b.name,fn:()=>checkBag(b),kind:'bag'});return out}
+function nearest(){const items=targets().map(t=>({...t,d:Math.hypot(t.x-player.x,t.y-player.y)})).filter(t=>t.d<65).sort((a,b)=>a.d-b.d);return items[0]||null}
+function interact(){if(dialogue){advance();return}if(overlayOpen){closeOverlay();return}near=nearest();if(near)near.fn();else toast('가까이 다가가서 조사하세요.')}
+function rect(a,fill,stroke){ctx.fillStyle=fill;ctx.fillRect(a.x,a.y,a.w,a.h);if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=3;ctx.strokeRect(a.x,a.y,a.w,a.h)}}
+function label(t,x,y,color='#fff',size=12){ctx.fillStyle=color;ctx.font=⁠bold ${size}px monospace⁠;ctx.textAlign='center';ctx.fillText(t,x,y)}
+function draw(){ctx.fillStyle='#24232b';ctx.fillRect(0,0,W,H);for(const r of rooms){rect(r,r.color);label(r.name,r.x+r.w/2,r.y+18,'#e6d8c7',12)}
+// 바닥 격자
+ctx.strokeStyle='#ffffff12';ctx.lineWidth=1;for(let x=30;x<930;x+=25){ctx.beginPath();ctx.moveTo(x,30);ctx.lineTo(x,510);ctx.stroke()}for(let y=30;y<510;y+=25){ctx.beginPath();ctx.moveTo(30,y);ctx.lineTo(930,y);ctx.stroke()}
+for(const w of walls)rect(w,'#353846','#151722');for(const f of furniture){rect(f,f.type==='table'?'#604535':f.type==='piano'?'#24202b':'#535d60','#27262c');label(f.label,f.x+f.w/2,f.y+f.h/2+4,'#e6d3ac',12)}
+for(const e of evidence){if(state.found.includes(e.id))continue;ctx.fillStyle='#e3d6a4';ctx.fillRect(e.x-7,e.y-6,14,12);ctx.strokeStyle='#68502c';ctx.strokeRect(e.x-7,e.y-6,14,12)}
+if(state.phase==='bags')for(const b of bags){ctx.fillStyle='#bd8a52';ctx.fillRect(b.x-9,b.y-9,18,18);label('▣',b.x,b.y+4,'#231d19',13)}
+for(const n of npc){ctx.fillStyle='#0006';ctx.fillRect(n.x-10,n.y+8,22,6);ctx.fillStyle=n.color;ctx.fillRect(n.x-10,n.y-16,20,25);ctx.fillStyle='#ead4b3';ctx.fillRect(n.x-8,n.y-25,16,12);label(revealRole(n.id),n.x,n.y-34,'#fff',12);if(evidence.some(e=>e.owner===n.id&&state.found.includes(e.id)&&!state.talkedEvidence.includes(e.id)))label('!',n.x+15,n.y-20,'#ffe182',19)}
+ctx.fillStyle='#10101688';ctx.fillRect(player.x-11,player.y+8,22,6);ctx.fillStyle='#343d60';ctx.fillRect(player.x-10,player.y-14,20,24);ctx.fillStyle='#f2d6b5';ctx.fillRect(player.x-8,player.y-23,16,12);label('탐정',player.x,player.y-32,'#fff4a5',12);
+near=nearest();const p=$('#prompt');if(near&&!dialogue&&!overlayOpen&&!state.ending){p.hidden=false;p.textContent=⁠E / 클릭 : ${near.name}⁠}else p.hidden=true;
+}
+let last=performance.now();function frame(now){const dt=Math.min((now-last)/16.67,2);last=now;if(!dialogue&&!overlayOpen&&!state.ending){let dx=(keys.has('ArrowRight')||keys.has('d')?1:0)-(keys.has('ArrowLeft')||keys.has('a')?1:0);let dy=(keys.has('ArrowDown')||keys.has('s')?1:0)-(keys.has('ArrowUp')||keys.has('w')?1:0);if(dx||dy){const len=Math.hypot(dx,dy);dx=dx/lenplayer.speeddt;dy=dy/lenplayer.speed*dt;if(!collide(player.x+dx,player.y))player.x+=dx;if(!collide(player.x,player.y+dy))player.y+=dy}}draw();requestAnimationFrame(frame)}
+window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();if(e.key==='Escape'){if(overlayOpen&&!state.ending)closeOverlay();else if(dialogue)advance();return}if(e.key.toLowerCase()='n'){if(overlayOpen&&!state.ending)closeOverlay();else notebook();return}if(e.key.toLowerCase()='e'||e.key==='Enter'||e.key===' '){if(!e.repeat)interact();return}keys.add(e.key.length=1?e.key.toLowerCase():e.key)});window.addEventListener('keyup',e=>keys.delete(e.key.length=1?e.key.toLowerCase():e.key));window.addEventListener('blur',()=>keys.clear());
+canvas.addEventListener('pointerdown',e=>{if(dialogue||overlayOpen)return;const r=canvas.getBoundingClientRect(),x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;const t=targets().filter(t=>Math.hypot(t.x-x,t.y-y)<32&&Math.hypot(t.x-player.x,t.y-player.y)<75).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];if(t)t.fn();else toast('대상 가까이에서 클릭하거나 E를 누르세요.')});
+for(const b of document me.querySelectorAll('[data-key]')){const key=b.dataset.key;b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);keys.add(key)});for(const ev of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,()=>keys.delete(key))}
+('#next').onclick=advance;('#actionBtn').onclick=interact;$('#bookBtn').onclick=()=>overlayOpen?closeOverlay():notebook();
+load();progress();if(state.ending)showEnding();else if(state.phase==='intro')showIntro();requestAnimationFrame(frame);setInterval(()=>{if(!state.ending)save()},4000);
+</script></body></html>
